@@ -1,0 +1,23 @@
+{
+  "Fixed Timer": {
+    "name": "Fixed Timer",
+    "mean_wait_time": 3.784,
+    "std_wait_time": 1.97,
+    "mean_reward": 43.4,
+    "episodes": 10
+  },
+  "SARSA": {
+    "name": "SARSA",
+    "mean_wait_time": 0.905,
+    "std_wait_time": 0.592,
+    "mean_reward": 74.8,
+    "episodes": 10
+  },
+  "Q-Learning": {
+    "name": "Q-Learning",
+    "mean_wait_time": 1.109,
+    "std_wait_time": 0.313,
+    "mean_reward": 70.4,
+    "episodes": 10
+  }
+}
