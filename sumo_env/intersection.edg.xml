@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Edge (road) definitions for the 4-way intersection.
+  8 directed edges: 4 inbound + 4 outbound from center.
+-->
+<edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edges_file.xsd">
+    <!-- Inbound edges (approaches to intersection) -->
+    <edge id="north_in"  from="north"  to="center" numLanes="1" speed="13.89" length="500"/>
+    <edge id="south_in"  from="south"  to="center" numLanes="1" speed="13.89" length="500"/>
+    <edge id="east_in"   from="east"   to="center" numLanes="1" speed="13.89" length="500"/>
+    <edge id="west_in"   from="west"   to="center" numLanes="1" speed="13.89" length="500"/>
+    <!-- Outbound edges (exits from intersection) -->
+    <edge id="north_out" from="center" to="north"  numLanes="1" speed="13.89" length="500"/>
+    <edge id="south_out" from="center" to="south"  numLanes="1" speed="13.89" length="500"/>
+    <edge id="east_out"  from="center" to="east"   numLanes="1" speed="13.89" length="500"/>
+    <edge id="west_out"  from="center" to="west"   numLanes="1" speed="13.89" length="500"/>
+</edges>

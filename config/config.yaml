@@ -1,0 +1,69 @@
+# Smart Signal — Configuration File
+# All hyperparameters and paths centralised here
+
+simulation:
+  num_episodes: 500          # episodes per training run
+  episode_length: 3600       # seconds per episode (1 simulated hour)
+  sumo_step_length: 1.0      # simulation time step (seconds)
+  use_gui: false             # set true for demo mode
+  seed: 42
+
+environment:
+  state_bins: 100            # density discretised to 1-100
+  green_phase_options: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]  # action space
+  yellow_phase_duration: 4   # fixed yellow between phases
+  min_green: 10              # minimum green duration
+
+# Traffic density weighting (per vehicle class)
+density_weights:
+  car: 1.0
+  truck: 2.0
+  bus: 3.0
+  motorcycle: 0.5
+  person: 0.5
+
+# RL hyperparameter search space (used by tuner.py)
+hyperparameter_tuning:
+  alpha: [0.01, 0.05, 0.1, 0.2, 0.5]       # learning rate
+  gamma: [0.1, 0.5, 0.7, 0.9, 0.99]        # discount factor
+  epsilon: [0.3, 0.5, 0.7, 0.9]            # initial exploration rate
+  epsilon_decay: [0.995, 0.999]            # per-episode decay
+  epsilon_min: 0.05                        # floor on exploration
+  tuning_episodes: 200                     # shorter run for tuning
+  eval_episodes: 100                       # last N eps for metric
+
+# Default Q-learning params (overridden by tuner output)
+q_learning:
+  alpha: 0.1
+  gamma: 0.9
+  epsilon: 0.7
+  epsilon_decay: 0.995
+  epsilon_min: 0.05
+
+# Default SARSA params
+sarsa:
+  alpha: 0.1
+  gamma: 0.9
+  epsilon: 0.7
+  epsilon_decay: 0.995
+  epsilon_min: 0.05
+
+# YOLO
+yolo:
+  model: yolov8n.pt          # nano model — fast, no training needed
+  confidence: 0.4
+  vehicle_classes: [2, 5, 7, 0]  # COCO: car=2, bus=5, truck=7, person=0
+
+# Paths
+paths:
+  sumo_config: sumo_env/intersection.sumocfg
+  results_dir: results
+  plots_dir: results/plots
+  q_tables_dir: results/q_tables
+  screenshots_dir: sumo_env/screenshots
+  best_params: results/best_params.json
+
+# API
+api:
+  host: 127.0.0.1
+  port: 8000

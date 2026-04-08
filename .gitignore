@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+.DS_Store
+*.log
+results/plots/*.png
+results/plots/*.csv
+results/q_tables/*.npy
+*.pkl
+.idea/
+.vscode/
+sumo_env/screenshots/
+IT567_Project-4.pdf
+paper.pdf
+Smart-Signal (1).pdf

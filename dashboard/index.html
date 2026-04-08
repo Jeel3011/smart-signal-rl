@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Signal — Adaptive Traffic Control Dashboard</title>
+  <meta name="description" content="Real-time dashboard for Smart Signal: adaptive traffic signal control using Q-Learning reinforcement learning and YOLOv8 object detection."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+  <!-- Background grid animation -->
+  <div class="grid-bg"></div>
+
+  <!-- ──────────────── HEADER ──────────────── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🚦</span>
+        <div>
+          <div class="logo-title">Smart Signal</div>
+          <div class="logo-sub">Adaptive Traffic Control via RL + YOLOv8</div>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-blue">Q-Learning</span>
+        <span class="badge badge-orange">SARSA</span>
+        <span class="badge badge-green">YOLOv8n</span>
+        <span class="badge badge-purple">SUMO</span>
+      </div>
+      <div class="status-indicator" id="statusDot">
+        <span class="dot dot-idle"></span>
+        <span id="statusLabel">Ready</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ──────────────── MAIN ──────────────── -->
+  <main class="main">
+
+    <!-- ===== TOP ROW: KPI Cards ===== -->
+    <section class="kpi-row">
+      <div class="kpi-card" id="kpiWaitReduction">
+        <div class="kpi-icon">⚡</div>
+        <div class="kpi-value" id="valWaitReduction">—</div>
+        <div class="kpi-label">Wait Time Reduction</div>
+        <div class="kpi-sub">Q-Learning vs Fixed Timer</div>
+      </div>
+      <div class="kpi-card" id="kpiCarsWaiting">
+        <div class="kpi-icon">🚗</div>
+        <div class="kpi-value" id="valCarsWaiting">—</div>
+        <div class="kpi-label">Avg Cars Waiting</div>
+        <div class="kpi-sub">Q-Learning agent</div>
+      </div>
+      <div class="kpi-card" id="kpiQValues">
+        <div class="kpi-icon">🧠</div>
+        <div class="kpi-value" id="valQValues">1,000</div>
+        <div class="kpi-label">Q-Table Entries</div>
+        <div class="kpi-sub">100 states × 10 actions</div>
+      </div>
+      <div class="kpi-card" id="kpiCost">
+        <div class="kpi-icon">💡</div>
+        <div class="kpi-value">$0</div>
+        <div class="kpi-label">Hardware Cost</div>
+        <div class="kpi-sub">Purely software-based</div>
+      </div>
+    </section>
+
+    <!-- ===== ROW 2: Training Controls + RL Math ===== -->
+    <section class="two-col">
+
+      <!-- Training Panel -->
+      <div class="card" id="trainingPanel">
+        <div class="card-header">
+          <h2>🎮 Training Control</h2>
+          <span class="tag" id="trainStatusTag">Idle</span>
+        </div>
+        <div class="train-controls">
+          <div class="param-row">
+            <label>Episodes</label>
+            <input type="range" id="episodesSlider" min="100" max="1000" step="50" value="500"/>
+            <span class="param-val" id="episodesVal">500</span>
+          </div>
+          <div class="param-row">
+            <label>Mode</label>
+            <div class="toggle-group">
+              <button class="toggle active" id="btnFast" onclick="setMode('fast')">Fast (no SUMO)</button>
+              <button class="toggle" id="btnSumo" onclick="setMode('sumo')">SUMO Env</button>
+            </div>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="chkTune"/>
+            <label for="chkTune">Run hyperparameter tuning first (200 configs)</label>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary" id="btnTrain" onclick="startTraining()">▶ Start Training</button>
+          <button class="btn-secondary" onclick="refreshStatus()">↻ Refresh</button>
+        </div>
+        <!-- Progress bar -->
+        <div class="progress-wrap" id="progressWrap" style="display:none">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-label" id="progressLabel">Episode 0 / 500</div>
+        </div>
+        <!-- Live stats during training -->
+        <div class="live-stats" id="liveStats" style="display:none">
+          <div class="stat-chip"><span>Reward</span><b id="liveReward">—</b></div>
+          <div class="stat-chip"><span>Wait</span><b id="liveWait">—</b></div>
+          <div class="stat-chip"><span>ε</span><b id="liveEps">—</b></div>
+        </div>
+      </div>
+
+      <!-- RL Math Card -->
+      <div class="card math-card">
+        <div class="card-header"><h2>📐 RL Mathematics (Sutton & Barto Ch.6)</h2></div>
+        <div class="math-block">
+          <div class="math-title">Q-Learning Update Rule (Eq. 6.8)</div>
+          <div class="math-eq" id="mathEq">
+            Q(S,A) ← Q(S,A) + α·[R + γ·max<sub>a</sub> Q(S',a) − Q(S,A)]
+          </div>
+        </div>
+        <div class="math-params" id="mathParams">
+          <div class="mp-item"><span class="mp-sym">α</span><span class="mp-name">Learning rate</span><span class="mp-val" id="mpAlpha">—</span></div>
+          <div class="mp-item"><span class="mp-sym">γ</span><span class="mp-name">Discount factor</span><span class="mp-val" id="mpGamma">—</span></div>
+          <div class="mp-item"><span class="mp-sym">ε</span><span class="mp-name">Exploration rate</span><span class="mp-val" id="mpEps">—</span></div>
+          <div class="mp-item"><span class="mp-sym">|S|</span><span class="mp-name">State space</span><span class="mp-val">100</span></div>
+          <div class="mp-item"><span class="mp-sym">|A|</span><span class="mp-name">Action space</span><span class="mp-val">10</span></div>
+        </div>
+        <div class="math-block" style="margin-top:12px">
+          <div class="math-title">SARSA Update Rule (Eq. 6.7)</div>
+          <div class="math-eq sarsa-eq">
+            Q(S,A) ← Q(S,A) + α·[R + γ·Q(S',A') − Q(S,A)]
+          </div>
+        </div>
+        <div class="math-note">
+          ε-greedy: With prob ε → explore (random action) | prob 1−ε → exploit (max Q)
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ROW 3: Results Comparison + Policy Query ===== -->
+    <section class="two-col">
+
+      <!-- Results table -->
+      <div class="card">
+        <div class="card-header"><h2>📊 Algorithm Comparison</h2>
+          <button class="icon-btn" onclick="loadResults()" title="Refresh">↻</button>
+        </div>
+        <table class="results-table" id="resultsTable">
+          <thead>
+            <tr>
+              <th>Algorithm</th>
+              <th>Mean Wait (s)</th>
+              <th>Improvement</th>
+              <th>Bar</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody">
+            <tr><td colspan="4" class="placeholder">Run training to see results</td></tr>
+          </tbody>
+        </table>
+        <div class="ref-note">
+          Reference: Bardon Sutton RL Book · Research Paper (I-SMAC 2019)
+        </div>
+      </div>
+
+      <!-- Policy query -->
+      <div class="card">
+        <div class="card-header"><h2>🔍 Policy Inspector</h2></div>
+        <div class="policy-input">
+          <label>Traffic Density State (1–100)</label>
+          <div class="slider-row">
+            <input type="range" id="densitySlider" min="1" max="100" value="50"
+                   oninput="updateDensityLabel(this.value)" onchange="queryPolicy(this.value)"/>
+            <span class="density-val" id="densityLabel">50</span>
+            <span class="density-badge" id="densityBadge">MED</span>
+          </div>
+        </div>
+        <div class="policy-result" id="policyResult">
+          <div class="pr-empty">Adjust slider to query trained Q-table</div>
+        </div>
+        <div class="q-bars" id="qBars"></div>
+      </div>
+    </section>
+
+    <!-- ===== ROW 4: Plots ===== -->
+    <section class="plots-grid">
+      <div class="card plot-card">
+        <div class="card-header"><h2>📈 Training Curves</h2></div>
+        <img id="plotTraining" class="plot-img" src="/api/plot/training_curves"
+             onerror="this.src=''; this.parentElement.querySelector('.plot-ph').style.display='flex'"
+             alt="Training curves"/>
+        <div class="plot-ph">Run training to see curves</div>
+      </div>
+      <div class="card plot-card">
+        <div class="card-header"><h2>🔥 Q-Table Heatmap</h2></div>
+        <img id="plotHeatmap" class="plot-img" src="/api/plot/q_table_heatmap"
+             onerror="this.src=''; this.parentElement.querySelector('.plot-ph').style.display='flex'"
+             alt="Q-table heatmap"/>
+        <div class="plot-ph">Train agent to visualise Q-table</div>
+      </div>
+      <div class="card plot-card">
+        <div class="card-header"><h2>📉 ε Decay</h2></div>
+        <img id="plotEps" class="plot-img" src="/api/plot/epsilon_decay"
+             onerror="this.src=''; this.parentElement.querySelector('.plot-ph').style.display='flex'"
+             alt="Epsilon decay"/>
+        <div class="plot-ph">Showing exploration annealing</div>
+      </div>
+      <div class="card plot-card">
+        <div class="card-header"><h2>📊 TD Error Convergence</h2></div>
+        <img id="plotTD" class="plot-img" src="/api/plot/td_error"
+             onerror="this.src=''; this.parentElement.querySelector('.plot-ph').style.display='flex'"
+             alt="TD error"/>
+        <div class="plot-ph">δ = R + γ·maxQ(S',a) − Q(S,A)</div>
+      </div>
+    </section>
+
+    <!-- ===== ROW 5: YOLO Detection ===== -->
+    <section class="card yolo-card">
+      <div class="card-header">
+        <h2>👁️ YOLOv8 Vehicle Detection</h2>
+        <span class="tag tag-green">COCO Pretrained — No Training Needed</span>
+      </div>
+      <div class="yolo-layout">
+        <div class="yolo-upload">
+          <div class="drop-zone" id="dropZone"
+               onclick="document.getElementById('fileInput').click()"
+               ondragover="event.preventDefault()"
+               ondrop="handleDrop(event)">
+            <div class="dz-icon">🖼️</div>
+            <div class="dz-text">Drop traffic image here<br/>or click to upload</div>
+            <div class="dz-sub">PNG / JPG — SUMO screenshot or real photo</div>
+          </div>
+          <input type="file" id="fileInput" accept="image/*"
+                 style="display:none" onchange="handleFileSelect(event)"/>
+        </div>
+        <div class="yolo-results" id="yoloResults">
+          <div class="yolo-ph">Upload an image to run detection</div>
+        </div>
+      </div>
+      <div class="yolo-preview" id="yoloPreview" style="display:none">
+        <img id="yoloAnnotated" alt="YOLO annotated output"/>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ──────────────── FOOTER ──────────────── -->
+  <footer class="footer">
+    <span>Smart Signal · IT567 Reinforcement Learning Project · 2026</span>
+    <span>Algorithm: Q-Learning (Sutton & Barto Ch.6) · Simulator: SUMO · Detection: YOLOv8n</span>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

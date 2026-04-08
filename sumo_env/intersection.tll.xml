@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Traffic signal (TLS) definition for the center intersection.
+  Two phases: NS green / EW green, each preceded by yellow.
+  Phase durations are controlled by the RL agent at runtime via TraCI.
+  These are initial defaults only.
+-->
+<tlLogics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tllogic_file.xsd">
+    <tlLogic id="center" type="static" programID="0" offset="0">
+        <!-- Phase 0: North-South GREEN (30s default) -->
+        <phase duration="30" state="GrGr"/>
+        <!-- Phase 1: North-South YELLOW -->
+        <phase duration="4"  state="yryr"/>
+        <!-- Phase 2: East-West GREEN (30s default) -->
+        <phase duration="30" state="rGrG"/>
+        <!-- Phase 3: East-West YELLOW -->
+        <phase duration="4"  state="ryry"/>
+    </tlLogic>
+</tlLogics>

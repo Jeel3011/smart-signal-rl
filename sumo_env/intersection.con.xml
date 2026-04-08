@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Connection definitions: which lanes connect through the intersection.
+  Straight-through movements for all 4 approaches.
+-->
+<connections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/connections_file.xsd">
+    <!-- North ↔ South (straight through) -->
+    <connection from="north_in" to="south_out" fromLane="0" toLane="0"/>
+    <connection from="south_in" to="north_out" fromLane="0" toLane="0"/>
+    <!-- East ↔ West (straight through) -->
+    <connection from="east_in"  to="west_out"  fromLane="0" toLane="0"/>
+    <connection from="west_in"  to="east_out"  fromLane="0" toLane="0"/>
+    <!-- Left turns -->
+    <connection from="north_in" to="east_out"  fromLane="0" toLane="0"/>
+    <connection from="south_in" to="west_out"  fromLane="0" toLane="0"/>
+    <connection from="east_in"  to="south_out" fromLane="0" toLane="0"/>
+    <connection from="west_in"  to="north_out" fromLane="0" toLane="0"/>
+    <!-- Right turns -->
+    <connection from="north_in" to="west_out"  fromLane="0" toLane="0"/>
+    <connection from="south_in" to="east_out"  fromLane="0" toLane="0"/>
+    <connection from="east_in"  to="north_out" fromLane="0" toLane="0"/>
+    <connection from="west_in"  to="south_out" fromLane="0" toLane="0"/>
+</connections>

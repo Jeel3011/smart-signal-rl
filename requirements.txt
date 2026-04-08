@@ -1,0 +1,25 @@
+# Smart Signal — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core scientific computing
+numpy>=1.26.0
+pyyaml>=6.0
+
+# Reinforcement Learning / Simulation
+# SUMO must be installed separately: brew install sumo (macOS)
+# traci is bundled with SUMO — no pip install needed
+
+# Object Detection
+ultralytics>=8.0.0        # YOLOv8 (downloads yolov8n.pt ~6MB on first use)
+opencv-python>=4.8.0
+
+# Backend
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.9   # for file uploads
+
+# Visualisation
+matplotlib>=3.8.0
+
+# Utilities
+tqdm>=4.66.0

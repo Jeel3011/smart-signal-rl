@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  4-way single intersection network for Smart Signal project.
+  4 approaches: North, South, East, West — each with 1 lane.
+  Generated for SUMO traffic simulator.
+-->
+<nodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/nodes_file.xsd">
+    <!-- Center intersection -->
+    <node id="center" x="0.0"   y="0.0"   type="traffic_light"/>
+    <!-- Perimeter (approach/exit) nodes -->
+    <node id="north"  x="0.0"   y="500.0" type="priority"/>
+    <node id="south"  x="0.0"   y="-500.0" type="priority"/>
+    <node id="east"   x="500.0" y="0.0"   type="priority"/>
+    <node id="west"   x="-500.0" y="0.0"  type="priority"/>
+</nodes>
