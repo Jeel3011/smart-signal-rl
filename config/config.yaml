@@ -51,8 +51,9 @@ sarsa:
 # YOLO
 yolo:
   model: yolov8n.pt          # nano model — fast, no training needed
-  confidence: 0.4
-  vehicle_classes: [2, 5, 7, 0]  # COCO: car=2, bus=5, truck=7, person=0
+  confidence: 0.25           # lowered from 0.40 to catch auto-rickshaws + occluded vehicles
+  vehicle_classes: [0, 1, 2, 3, 5, 7]  # COCO: person=0, bicycle=1, car=2, motorcycle=3, bus=5, truck=7
+  # Note: auto-rickshaw not in COCO — detected via aspect-ratio heuristic on car/truck boxes
 
 # Paths
 paths:

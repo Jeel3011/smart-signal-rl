@@ -28,20 +28,32 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
-# COCO class IDs → weights for traffic density
+# COCO class IDs → (name, density_weight)
+# NOTE: 'auto-rickshaw' is NOT a COCO class. At inference time it is
+# partially matched as 'car' or 'truck' at lower confidence.
+# Lowering confidence to 0.25 catches these borderline detections.
+# Aspect-ratio heuristic: if w/h ∈ [0.6, 1.1] and class=car → likely auto-rickshaw
 VEHICLE_CLASSES = {
-    0: ("person",     0.5),
-    2: ("car",        1.0),
-    5: ("bus",        3.0),
-    7: ("truck",      2.0),
+    0: ("person",      0.5),   # pedestrians
+    1: ("bicycle",     0.8),   # cyclists
+    2: ("car",         1.0),   # cars (also catches auto-rickshaws)
+    3: ("motorcycle",  0.8),   # bikes + pillion riders counted as one box
+    5: ("bus",         3.0),   # buses
+    7: ("truck",       2.0),   # trucks
 }
+
+# Auto-rickshaw aspect ratio heuristic (width/height range ≈ square-ish 3-wheelers)
+AUTO_RICKSHAW_AR_MIN = 0.55
+AUTO_RICKSHAW_AR_MAX = 1.15
+AUTO_RICKSHAW_WEIGHT  = 1.5   # between car(1.0) and truck(2.0)
 
 # Normalisation cap: density = 100 when raw_density >= this value
 MAX_RAW_DENSITY = 50.0
 
 # YOLOv8 model type (nano for speed — no GPU required)
-MODEL_NAME = "yolov8n.pt"
-CONFIDENCE  = 0.40
+MODEL_NAME  = "yolov8n.pt"
+CONFIDENCE  = 0.25   # lowered from 0.40 to catch missed detections
+                     # (auto-rickshaws, pillion riders, partially occluded cars)
 
 
 class YOLODetector:
@@ -93,17 +105,37 @@ class YOLODetector:
         results = self._model(image, conf=self.confidence, verbose=False)[0]
 
         counts = {name: 0 for _, (name, _) in VEHICLE_CLASSES.items()}
+        counts["auto-rickshaw"] = 0   # extra class via heuristic
         raw_density = 0.0
 
         boxes = results.boxes
         if boxes is not None:
-            for cls_id, conf in zip(boxes.cls.cpu().numpy(),
-                                    boxes.conf.cpu().numpy()):
+            for cls_id, conf, xyxy in zip(
+                    boxes.cls.cpu().numpy(),
+                    boxes.conf.cpu().numpy(),
+                    boxes.xyxy.cpu().numpy()):
+
                 cls_id = int(cls_id)
-                if cls_id in VEHICLE_CLASSES:
-                    name, weight = VEHICLE_CLASSES[cls_id]
-                    counts[name] += 1
-                    raw_density  += weight
+                if cls_id not in VEHICLE_CLASSES:
+                    continue
+
+                name, weight = VEHICLE_CLASSES[cls_id]
+
+                # ── Auto-rickshaw heuristic ──────────────────────────────
+                # COCO has no 'auto-rickshaw' class. 3-wheelers tend to be
+                # detected as 'car' or 'truck' with a near-square bounding box.
+                # Aspect ratio W/H ∈ [0.55, 1.15] → reclassify & reweight.
+                if cls_id in (2, 7):   # car or truck
+                    x1, y1, x2, y2 = xyxy
+                    w, h = (x2 - x1), (y2 - y1)
+                    ar   = w / max(h, 1)
+                    if AUTO_RICKSHAW_AR_MIN <= ar <= AUTO_RICKSHAW_AR_MAX:
+                        counts["auto-rickshaw"] += 1
+                        raw_density += AUTO_RICKSHAW_WEIGHT
+                        continue   # don't double-count as car
+
+                counts[name] += 1
+                raw_density  += weight
 
         # Normalise to [1, 100]
         density = int((raw_density / MAX_RAW_DENSITY) * 99) + 1
