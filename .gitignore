@@ -18,6 +18,12 @@ results/q_tables/*.npy
 .idea/
 .vscode/
 sumo_env/screenshots/
+# PDFs (large, not code)
 IT567_Project-4.pdf
-paper.pdf
-Smart-Signal (1).pdf
+"Smart-Signal (1).pdf"
+Smart_Signal__Adaptive_Traffic_Signal_Control_using_Reinforcement_Learning_and_Object_Detection.pdf
+
+# Generated artifacts
+results/q_tables/
+results/plots/
+sumo_env/screenshots/
