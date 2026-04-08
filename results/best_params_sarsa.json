@@ -1,0 +1,7 @@
+{
+  "alpha": 0.2,
+  "gamma": 0.5,
+  "epsilon": 0.3,
+  "epsilon_decay": 0.999,
+  "score": 1.1946627976190471
+}

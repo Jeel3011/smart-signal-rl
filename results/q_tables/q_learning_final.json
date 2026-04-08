@@ -1,9 +1,9 @@
 {
   "alpha": 0.1,
-  "gamma": 0.9,
-  "epsilon": 0.25687047520831696,
+  "gamma": 0.1,
+  "epsilon": 0.057100303008194846,
   "epsilon_decay": 0.995,
   "epsilon_min": 0.05,
-  "episode": 200,
-  "total_updates": 12000
+  "episode": 500,
+  "total_updates": 30000
 }

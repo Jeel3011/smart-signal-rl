@@ -1,0 +1,1402 @@
+[
+  {
+    "alpha": 0.2,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.1946627976190471
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.2215341269841269
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.2638144841269847
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.2638144841269847
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.2729226190476195
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.3011752976190476
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.3039573412698413
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.3079064484126983
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.31658125
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.3214392857142854
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.3225000000000002
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.3253019841269844
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.3426217261904765
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.3446131944444446
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.3515585317460315
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.36429623015873
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.3707046626984125
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.3887270833333332
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.400494841269841
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.406324107142857
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.413209424603175
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.4171684523809522
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.425999702380952
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.4382855158730157
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.4455688492063492
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.4500978174603174
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.45441875
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.4580864087301588
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.458167261904762
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.4621372023809525
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.4637934523809522
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.476463888888889
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.480728472222222
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.4828307539682541
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.4858424603174598
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.496814484126984
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.498608630952381
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.50281746031746
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.5050531746031743
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.505881150793651
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.5067025793650795
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.5152810515873012
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.5166802579365077
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.5180177579365082
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.5187602182539683
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.5353192460317462
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.540538690476191
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.5425148809523812
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.5472975198412697
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.548426587301587
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.548752281746032
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.5490248015873014
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.5490248015873014
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.5496563492063495
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.5512086309523812
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.5521802579365085
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.5608137896825394
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.5638697420634924
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.5730709325396828
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.5812286706349206
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.5856160714285708
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.5876205357142859
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.5915332341269843
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.596844841269841
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.598382440476191
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.6048225198412698
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.6076696428571429
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.614207738095238
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.6142193452380953
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.6209006944444448
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.6220212301587298
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.6237031746031747
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.6244829365079363
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.6291598214285716
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.6339350198412697
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.6405794642857137
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.643194543650794
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.6436396825396826
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.6491198412698418
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.653200992063492
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.6540035714285717
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.6591224206349207
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.6616662698412703
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.6622801587301586
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.6737852182539683
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.6757673611111112
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.6808761904761909
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.6870450396825398
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.6873940476190472
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.687616170634921
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.6879002976190478
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.6928806547619044
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.69557123015873
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.698243154761905
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.701085416666667
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.7021069444444443
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.702730555555556
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.7071527777777777
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7080022817460319
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7088098214285716
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.7184734126984131
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.723108630952381
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7295584325396829
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7310171626984125
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.7314158730158724
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.7396455357142855
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.7407439484126983
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.995,
+    "score": 1.7443201388888887
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7509446428571431
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7509446428571431
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.7538587301587298
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7543004960317463
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7553083333333337
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.7592246031746033
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7612446428571429
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7627261904761908
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.7664598214285718
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.7677393849206349
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.768085714285715
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.7728708333333332
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.772969841269841
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.7793362103174604
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.7809501984126987
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.786230753968254
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.7903960317460315
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8000819444444445
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.8057098214285716
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8105884920634923
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.8152208333333337
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.8195555555555556
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.8195555555555556
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.8195555555555556
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.8195555555555556
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.8198920634920634
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.8205376984126982
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.99,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.8273685515873015
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.8308433531746033
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.8328083333333336
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.5,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.8379816468253969
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.839929166666667
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.8410242063492064
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.8415987103174603
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8515687499999998
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8522974206349203
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.995,
+    "score": 1.8538995039682544
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8555395833333335
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.856220238095238
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8564951388888893
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8578674603174603
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8633726190476194
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8634699404761905
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.5,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 1.8723684523809527
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8760556547619047
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.1,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.8889676587301587
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.9,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.8915405753968257
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.5,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8953212301587299
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.8996460317460322
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.901403472222222
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.9034415674603178
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.9075210317460323
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.9203586309523812
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 1.9224410714285718
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.9238210317460318
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.924749107142857
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.9308677579365081
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.7,
+    "epsilon": 0.7,
+    "epsilon_decay": 0.999,
+    "score": 1.9537150793650793
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.955386408730159
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.1,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.9577781746031744
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.9,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.9582960317460316
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 1.9651896825396824
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.969963888888889
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.9805555555555554
+  },
+  {
+    "alpha": 0.5,
+    "gamma": 0.99,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 1.9842039682539683
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 1.9914675595238094
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.7,
+    "epsilon": 0.9,
+    "epsilon_decay": 0.999,
+    "score": 2.002148511904762
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.0073425595238095
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 2.016210714285714
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 2.0236526785714286
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.029261408730159
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.034295535714286
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.99,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 2.0369017857142855
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.055670634920635
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.067504067460318
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.082122321428572
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.08650128968254
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.7,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.999,
+    "score": 2.0878010912698417
+  },
+  {
+    "alpha": 0.2,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.0911993055555556
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.1044951388888893
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.1233846230158737
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.1328235119047623
+  },
+  {
+    "alpha": 0.1,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.1349841269841274
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.9,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 2.192699007936508
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.2363969246031754
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.1,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.304557043650793
+  },
+  {
+    "alpha": 0.05,
+    "gamma": 0.1,
+    "epsilon": 0.5,
+    "epsilon_decay": 0.995,
+    "score": 2.3735243055555553
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.5,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.3849728174603175
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.999,
+    "score": 2.474602083333333
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.7,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.5705199404761907
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.99,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.6862837301587303
+  },
+  {
+    "alpha": 0.01,
+    "gamma": 0.9,
+    "epsilon": 0.3,
+    "epsilon_decay": 0.995,
+    "score": 2.732964682539682
+  }
+]

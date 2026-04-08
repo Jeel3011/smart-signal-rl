@@ -8,16 +8,16 @@
   },
   "SARSA": {
     "name": "SARSA",
-    "mean_wait_time": 0.905,
-    "std_wait_time": 0.592,
-    "mean_reward": 74.8,
+    "mean_wait_time": 1.116,
+    "std_wait_time": 0.973,
+    "mean_reward": 77.4,
     "episodes": 10
   },
   "Q-Learning": {
     "name": "Q-Learning",
-    "mean_wait_time": 1.109,
-    "std_wait_time": 0.313,
-    "mean_reward": 70.4,
+    "mean_wait_time": 0.908,
+    "std_wait_time": 0.622,
+    "mean_reward": 77.8,
     "episodes": 10
   }
 }

@@ -1,8 +1,8 @@
 {
-  "alpha": 0.1,
-  "gamma": 0.9,
-  "epsilon": 0.25687047520831696,
-  "epsilon_decay": 0.995,
+  "alpha": 0.2,
+  "gamma": 0.5,
+  "epsilon": 0.2455946488435909,
+  "epsilon_decay": 0.999,
   "epsilon_min": 0.05,
   "episode": 200
 }
