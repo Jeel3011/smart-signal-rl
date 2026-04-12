@@ -256,6 +256,47 @@ async function runYOLO(file) {
     }
     const d = await r.json();
     renderYOLOResults(d);
+    
+    // Fetch AI Agent Action based on Density State
+    try {
+      const policyRes = await fetch(`${API}/api/policy/${d.density}`);
+      const actionSpan = document.getElementById("yoloActionVal");
+      const explainerDiv = document.getElementById("yoloExplainer");
+      
+      const legacyEl = document.getElementById("legacyTimerVal");
+      const legacyTimer = legacyEl ? parseInt(legacyEl.value) : 87;
+      
+      if (policyRes.ok && actionSpan) {
+        const policyData = await policyRes.json();
+        const dur = policyData.duration;
+        actionSpan.innerHTML = `<span style="color:#a78bfa;">${dur}s</span> Green Phase`;
+        
+        let explText = "";
+        let diff = dur - legacyTimer;
+        let actionStr = diff === 0 ? "maintained the timer at" : (diff > 0 ? `<b style="color:#fca5a5;">increased</b> the timer by ${diff}s to` : `<b style="color:#6ee7b7;">decreased</b> the timer by ${Math.abs(diff)}s to`);
+        
+        const qVal = policyData.value.toFixed(2);
+        const mathLogic = `<b>RL Math:</b> Mapped to State <code>s=${d.density}</code>. By evaluating <code>V(s) = max_a Q(s, a)</code>, the agent selected Action <code>a=${dur}s</code> since it yields the highest expected reward (Q=${qVal}).<br/><br/><b>Result:</b> `;
+        
+        if (d.density >= 70) {
+          explText = `${mathLogic} High traffic density detected (${d.density}/100). Compared to the legacy static timer of ${legacyTimer}s in the photo, the AI agent <b>${actionStr} ${dur}s</b> to maximize throughput and clear heavy congestion.`;
+        } else if (d.density >= 35) {
+          explText = `${mathLogic} Moderate traffic detected (${d.density}/100). To balance flow against the legacy ${legacyTimer}s timer, the AI dynamically <b>${actionStr} ${dur}s</b>.`;
+        } else {
+          explText = `${mathLogic} Low traffic detected (${d.density}/100). The old static timer blindly waits ${legacyTimer}s. The AI intuitively <b>${actionStr} ${dur}s</b> so cross-traffic isn't left waiting on empty roads. This dynamically saves ${Math.abs(diff)} seconds of pure wait time!`;
+        }
+        
+        explainerDiv.innerHTML = `
+          <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; font-size: 0.85rem; color: #cbd5e1; line-height: 1.4; margin-top: 8px;">
+            <b>Instructor Notes:</b><br/> ${explText}
+          </div>
+        `;
+      } else if (actionSpan) {
+        actionSpan.innerHTML = `<span style="font-size: 0.85rem; font-weight:normal; color:#fca5a5;">Model not trained yet</span>`;
+      }
+    } catch (e) {
+      console.warn("Failed to fetch policy:", e);
+    }
   } catch (e) {
     yoloResultsDiv.innerHTML =
       `<div class="yolo-ph" style="color:#fca5a5">API error — make sure the server is running</div>`;
@@ -275,12 +316,25 @@ function renderYOLOResults(d) {
 
   const level = d.density >= 70 ? "🔴 HIGH" : d.density >= 35 ? "🟡 MED" : "🟢 LOW";
 
+  // Replaces the old render to include yoloExplainer
   document.getElementById("yoloResults").innerHTML = `
     ${rows}
-    <div class="yolo-density-row">
+    <div class="yolo-density-row" style="margin-bottom: 8px;">
       <span class="yolo-density-label">RL State / Density ${level}</span>
       <span class="yolo-density-val">${d.density}<span style="font-size:1rem;font-weight:400;color:var(--text-muted)">/100</span></span>
     </div>
+    
+    <div style="padding: 12px; background: rgba(139, 92, 246, 0.15); border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.3); display: flex; flex-direction: column; margin-bottom: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: 600; color: #c4b5fd; display: flex; align-items: center; gap: 6px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          AI Agent Action
+        </span>
+        <span id="yoloActionVal" style="font-size: 1.15rem; font-weight: 700; color: #fff;">Searching Q-Table...</span>
+      </div>
+      <div id="yoloExplainer"></div>
+    </div>
+
     <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px">
       ${d.num_detections} vehicles detected · Raw density: ${d.raw_density}
     </div>`;

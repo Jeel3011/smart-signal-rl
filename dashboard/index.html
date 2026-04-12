@@ -226,6 +226,11 @@
       </div>
       <div class="yolo-layout">
         <div class="yolo-upload">
+          <div style="margin-bottom: 12px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+            <label style="font-size: 0.85rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Legacy Timer in Photo (seconds)</label>
+            <input type="number" id="legacyTimerVal" value="87" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px; border-radius: 4px; width: 100px; font-family: var(--mono);" />
+            <span style="font-size: 0.75rem; color: #94a3b8; margin-left: 8px;">(for comparison)</span>
+          </div>
           <div class="drop-zone" id="dropZone"
                onclick="document.getElementById('fileInput').click()"
                ondragover="event.preventDefault()"
@@ -254,6 +259,6 @@
     <span>Algorithm: Q-Learning (Sutton & Barto Ch.6) · Simulator: SUMO · Detection: YOLOv8n</span>
   </footer>
 
-  <script src="/static/app.js"></script>
+  <script src="/static/app.js?v=4"></script>
 </body>
 </html>
