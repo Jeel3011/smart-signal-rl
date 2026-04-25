@@ -461,6 +461,21 @@ function renderYOLOResults(d) {
 
   const level = d.density >= 70 ? "🔴 HIGH" : d.density >= 35 ? "🟡 MED" : "🟢 LOW";
 
+  // Detection mode badge
+  const modeLabels = {
+    "coco": "COCO Classes",
+    "aerial_heuristic": "Aerial Heuristic",
+    "hybrid": "COCO + Aerial"
+  };
+  const modeColors = {
+    "coco": "#3b82f6",
+    "aerial_heuristic": "#f59e0b",
+    "hybrid": "#8b5cf6"
+  };
+  const detMode = d.detection_mode || "coco";
+  const modeLabel = modeLabels[detMode] || detMode;
+  const modeColor = modeColors[detMode] || "#64748b";
+
   document.getElementById("yoloResults").innerHTML = `
     ${rows}
     <div class="yolo-density-row">
@@ -469,6 +484,7 @@ function renderYOLOResults(d) {
     </div>
     <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px">
       ${d.num_detections} vehicles detected · Raw density: ${d.raw_density}
+      · Mode: <span style="color:${modeColor};font-weight:600">${modeLabel}</span>
     </div>`;
 
   if (d.annotated_b64) {

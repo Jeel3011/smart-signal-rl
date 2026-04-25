@@ -425,6 +425,7 @@ async def detect_vehicles(file: UploadFile = File(...)):
             "raw_density":    result["raw"],
             "density":        density,
             "num_detections": result["num_detections"],
+            "detection_mode": result.get("detection_mode", "coco"),
             "annotated_b64":  img_b64,
             # RL decision
             "rl_action": {

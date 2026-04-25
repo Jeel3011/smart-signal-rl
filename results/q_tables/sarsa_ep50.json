@@ -4,5 +4,6 @@
   "epsilon": 0.2853616884591095,
   "epsilon_decay": 0.999,
   "epsilon_min": 0.05,
-  "episode": 50
+  "episode": 50,
+  "total_updates": 3000
 }

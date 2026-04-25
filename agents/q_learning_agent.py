@@ -212,7 +212,16 @@ class QLearningAgent:
     def load(self, path: str):
         """Load Q-table and hyperparameters from disk."""
         p = pathlib.Path(path)
-        self.Q = np.load(str(p.with_suffix(".npy")))
+        loaded_Q = np.load(str(p.with_suffix(".npy")))
+        expected_shape = (self.num_states + 1, self.num_actions)
+        if loaded_Q.shape != expected_shape:
+            logger.warning(
+                f"[QLearning] Q-table shape mismatch: loaded {loaded_Q.shape}, "
+                f"expected {expected_shape}. Re-initializing to zeros."
+            )
+            self.Q = np.zeros(expected_shape, dtype=np.float64)
+        else:
+            self.Q = loaded_Q
         meta = json.loads(p.with_suffix(".json").read_text())
         self.alpha         = meta["alpha"]
         self.gamma         = meta["gamma"]
