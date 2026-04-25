@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Smart Signal — Adaptive Traffic Control Dashboard</title>
+  <title>Smart Signal — Q-Learning Traffic Control Dashboard</title>
   <meta name="description" content="Real-time dashboard for Smart Signal: adaptive traffic signal control using Q-Learning reinforcement learning and YOLOv8 object detection."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
@@ -20,14 +20,14 @@
         <span class="logo-icon">🚦</span>
         <div>
           <div class="logo-title">Smart Signal</div>
-          <div class="logo-sub">Adaptive Traffic Control via RL + YOLOv8</div>
+          <div class="logo-sub">Adaptive Traffic Control via Q-Learning (Sutton & Barto Ch.6)</div>
         </div>
       </div>
       <div class="header-badges">
         <span class="badge badge-blue">Q-Learning</span>
-        <span class="badge badge-orange">SARSA</span>
         <span class="badge badge-green">YOLOv8n</span>
-        <span class="badge badge-purple">SUMO</span>
+        <span class="badge badge-purple">ε-Greedy</span>
+        <span class="badge badge-orange">Online Learning</span>
       </div>
       <div class="status-indicator" id="statusDot">
         <span class="dot dot-idle"></span>
@@ -47,28 +47,58 @@
         <div class="kpi-label">Wait Time Reduction</div>
         <div class="kpi-sub">Q-Learning vs Fixed Timer</div>
       </div>
-      <div class="kpi-card" id="kpiCarsWaiting">
-        <div class="kpi-icon">🚗</div>
-        <div class="kpi-value" id="valCarsWaiting">—</div>
-        <div class="kpi-label">Avg Cars Waiting</div>
-        <div class="kpi-sub">Q-Learning agent</div>
-      </div>
       <div class="kpi-card" id="kpiQValues">
         <div class="kpi-icon">🧠</div>
         <div class="kpi-value" id="valQValues">1,000</div>
         <div class="kpi-label">Q-Table Entries</div>
         <div class="kpi-sub">100 states × 10 actions</div>
       </div>
-      <div class="kpi-card" id="kpiCost">
-        <div class="kpi-icon">💡</div>
-        <div class="kpi-value">$0</div>
-        <div class="kpi-label">Hardware Cost</div>
-        <div class="kpi-sub">Purely software-based</div>
+      <div class="kpi-card" id="kpiNonZero">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-value" id="valNonZero">—</div>
+        <div class="kpi-label">Q-Table Learned</div>
+        <div class="kpi-sub">% non-zero entries</div>
+      </div>
+      <div class="kpi-card" id="kpiOnline">
+        <div class="kpi-icon">🔄</div>
+        <div class="kpi-value" id="valOnlineUpdates">0</div>
+        <div class="kpi-label">Online Q-Updates</div>
+        <div class="kpi-sub">Real-time learning from images</div>
       </div>
     </section>
 
-    <!-- ===== ROW 2: Training Controls + RL Math ===== -->
+    <!-- ===== ROW 2: RL Math + Training Controls ===== -->
     <section class="two-col">
+
+      <!-- RL Math Card (Q-Learning ONLY) -->
+      <div class="card math-card">
+        <div class="card-header"><h2>📐 Q-Learning Mathematics (Sutton & Barto Ch.6.5)</h2></div>
+        <div class="math-block">
+          <div class="math-title">Q-Learning Update Rule (Eq. 6.8) — OFF-POLICY TD Control</div>
+          <div class="math-eq" id="mathEq">
+            Q(S,A) ← Q(S,A) + α·[R + γ·max<sub>a</sub> Q(S',a) − Q(S,A)]
+          </div>
+        </div>
+        <div class="math-params" id="mathParams">
+          <div class="mp-item"><span class="mp-sym">α</span><span class="mp-name">Learning rate</span><span class="mp-val" id="mpAlpha">—</span></div>
+          <div class="mp-item"><span class="mp-sym">γ</span><span class="mp-name">Discount factor</span><span class="mp-val" id="mpGamma">—</span></div>
+          <div class="mp-item"><span class="mp-sym">ε</span><span class="mp-name">Exploration rate</span><span class="mp-val" id="mpEps">—</span></div>
+          <div class="mp-item"><span class="mp-sym">|S|</span><span class="mp-name">State space</span><span class="mp-val">100</span></div>
+          <div class="mp-item"><span class="mp-sym">|A|</span><span class="mp-name">Action space</span><span class="mp-val">10</span></div>
+          <div class="mp-item"><span class="mp-sym">δ</span><span class="mp-name">TD Error</span><span class="mp-val" id="mpTD">—</span></div>
+        </div>
+        <div class="math-note">
+          <b>Key insight:</b> Q-Learning is <b>off-policy</b> — it learns the optimal policy directly
+          using max<sub>a</sub> Q(S',a) regardless of the exploration policy (ε-greedy).
+          This makes it more sample-efficient than on-policy methods.
+        </div>
+        <div class="math-block" style="margin-top:12px">
+          <div class="math-title">ε-Greedy Action Selection (Ch.2.4)</div>
+          <div class="math-eq" style="font-size:0.85rem">
+            π(s) = { random action with prob ε, argmax<sub>a</sub> Q(s,a) with prob 1−ε }
+          </div>
+        </div>
+      </div>
 
       <!-- Training Panel -->
       <div class="card" id="trainingPanel">
@@ -95,7 +125,7 @@
           </div>
         </div>
         <div class="btn-row">
-          <button class="btn-primary" id="btnTrain" onclick="startTraining()">▶ Start Training</button>
+          <button class="btn-primary" id="btnTrain" onclick="startTraining()">▶ Start Q-Learning Training</button>
           <button class="btn-secondary" onclick="refreshStatus()">↻ Refresh</button>
         </div>
         <!-- Progress bar -->
@@ -112,38 +142,10 @@
           <div class="stat-chip"><span>ε</span><b id="liveEps">—</b></div>
         </div>
       </div>
-
-      <!-- RL Math Card -->
-      <div class="card math-card">
-        <div class="card-header"><h2>📐 RL Mathematics (Sutton & Barto Ch.6)</h2></div>
-        <div class="math-block">
-          <div class="math-title">Q-Learning Update Rule (Eq. 6.8)</div>
-          <div class="math-eq" id="mathEq">
-            Q(S,A) ← Q(S,A) + α·[R + γ·max<sub>a</sub> Q(S',a) − Q(S,A)]
-          </div>
-        </div>
-        <div class="math-params" id="mathParams">
-          <div class="mp-item"><span class="mp-sym">α</span><span class="mp-name">Learning rate</span><span class="mp-val" id="mpAlpha">—</span></div>
-          <div class="mp-item"><span class="mp-sym">γ</span><span class="mp-name">Discount factor</span><span class="mp-val" id="mpGamma">—</span></div>
-          <div class="mp-item"><span class="mp-sym">ε</span><span class="mp-name">Exploration rate</span><span class="mp-val" id="mpEps">—</span></div>
-          <div class="mp-item"><span class="mp-sym">|S|</span><span class="mp-name">State space</span><span class="mp-val">100</span></div>
-          <div class="mp-item"><span class="mp-sym">|A|</span><span class="mp-name">Action space</span><span class="mp-val">10</span></div>
-        </div>
-        <div class="math-block" style="margin-top:12px">
-          <div class="math-title">SARSA Update Rule (Eq. 6.7)</div>
-          <div class="math-eq sarsa-eq">
-            Q(S,A) ← Q(S,A) + α·[R + γ·Q(S',A') − Q(S,A)]
-          </div>
-        </div>
-        <div class="math-note">
-          ε-greedy: With prob ε → explore (random action) | prob 1−ε → exploit (max Q)
-        </div>
-      </div>
     </section>
 
-    <!-- ===== ROW 3: Results Comparison + Policy Query ===== -->
+    <!-- ===== ROW 3: Results + Policy Inspector ===== -->
     <section class="two-col">
-
       <!-- Results table -->
       <div class="card">
         <div class="card-header"><h2>📊 Algorithm Comparison</h2>
@@ -163,13 +165,13 @@
           </tbody>
         </table>
         <div class="ref-note">
-          Reference: Bardon Sutton RL Book · Research Paper (I-SMAC 2019)
+          Reference: Sutton & Barto Ch.6 · Q-Learning (off-policy) vs Fixed Timer baseline
         </div>
       </div>
 
       <!-- Policy query -->
       <div class="card">
-        <div class="card-header"><h2>🔍 Policy Inspector</h2></div>
+        <div class="card-header"><h2>🔍 Q-Learning Policy Inspector</h2></div>
         <div class="policy-input">
           <label>Traffic Density State (1–100)</label>
           <div class="slider-row">
@@ -186,7 +188,33 @@
       </div>
     </section>
 
-    <!-- ===== ROW 4: Plots ===== -->
+    <!-- ===== ROW 4: LIVE Q-TABLE HEATMAP ===== -->
+    <section class="card qtable-card">
+      <div class="card-header">
+        <h2>🔥 Live Q-Table Heatmap</h2>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="tag tag-green" id="qtableStatus">—</span>
+          <button class="icon-btn" onclick="loadQTableSnapshot()" title="Refresh Q-Table">↻</button>
+        </div>
+      </div>
+      <div class="qtable-info">
+        <span>States 1–100 (traffic density) × 10 Actions (green phase: 10s–100s)</span>
+        <span>Green = high Q-value (preferred) · Red = low Q-value (avoided)</span>
+      </div>
+      <div class="qtable-container" id="qtableContainer">
+        <canvas id="qtableCanvas" width="800" height="400"></canvas>
+        <div class="qtable-tooltip" id="qtableTooltip" style="display:none"></div>
+      </div>
+      <div class="qtable-legend">
+        <div class="qtable-legend-bar"></div>
+        <div class="qtable-legend-labels">
+          <span>Low Q-value</span>
+          <span>High Q-value</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ROW 5: Training Plots ===== -->
     <section class="plots-grid">
       <div class="card plot-card">
         <div class="card-header"><h2>📈 Training Curves</h2></div>
@@ -196,18 +224,11 @@
         <div class="plot-ph">Run training to see curves</div>
       </div>
       <div class="card plot-card">
-        <div class="card-header"><h2>🔥 Q-Table Heatmap</h2></div>
-        <img id="plotHeatmap" class="plot-img" src="/api/plot/q_table_heatmap"
-             onerror="this.src=''; this.parentElement.querySelector('.plot-ph').style.display='flex'"
-             alt="Q-table heatmap"/>
-        <div class="plot-ph">Train agent to visualise Q-table</div>
-      </div>
-      <div class="card plot-card">
-        <div class="card-header"><h2>📉 ε Decay</h2></div>
+        <div class="card-header"><h2>📉 ε Decay (Exploration Annealing)</h2></div>
         <img id="plotEps" class="plot-img" src="/api/plot/epsilon_decay"
              onerror="this.src=''; this.parentElement.querySelector('.plot-ph').style.display='flex'"
              alt="Epsilon decay"/>
-        <div class="plot-ph">Showing exploration annealing</div>
+        <div class="plot-ph">Showing ε-greedy exploration annealing</div>
       </div>
       <div class="card plot-card">
         <div class="card-header"><h2>📊 TD Error Convergence</h2></div>
@@ -216,21 +237,48 @@
              alt="TD error"/>
         <div class="plot-ph">δ = R + γ·maxQ(S',a) − Q(S,A)</div>
       </div>
+      <div class="card plot-card">
+        <div class="card-header"><h2>🔥 Static Q-Table Heatmap</h2></div>
+        <img id="plotHeatmap" class="plot-img" src="/api/plot/q_table_heatmap"
+             onerror="this.src=''; this.parentElement.querySelector('.plot-ph').style.display='flex'"
+             alt="Q-table heatmap"/>
+        <div class="plot-ph">Train agent to visualise Q-table</div>
+      </div>
     </section>
 
-    <!-- ===== ROW 5: YOLO Detection ===== -->
+    <!-- ===== ROW 6: YOLO Detection + RL Loop ===== -->
     <section class="card yolo-card">
       <div class="card-header">
-        <h2>👁️ YOLOv8 Vehicle Detection</h2>
-        <span class="tag tag-green">COCO Pretrained — No Training Needed</span>
+        <h2>👁️ Upload Image → Q-Learning Agent Decision</h2>
+        <span class="tag tag-green">Full RL Loop</span>
       </div>
+
+      <!-- Step indicator -->
+      <div class="rl-loop-steps">
+        <div class="rl-step" id="stepDetect">
+          <div class="rl-step-num">1</div>
+          <div class="rl-step-label">YOLO → State (s)</div>
+        </div>
+        <div class="rl-step-arrow">→</div>
+        <div class="rl-step" id="stepDecide">
+          <div class="rl-step-num">2</div>
+          <div class="rl-step-label">π(s) = argmax Q(s,a)</div>
+        </div>
+        <div class="rl-step-arrow">→</div>
+        <div class="rl-step" id="stepSimulate">
+          <div class="rl-step-num">3</div>
+          <div class="rl-step-label">Simulate R, S'</div>
+        </div>
+        <div class="rl-step-arrow">→</div>
+        <div class="rl-step" id="stepLearn">
+          <div class="rl-step-num">4</div>
+          <div class="rl-step-label">Q-Table Update</div>
+        </div>
+      </div>
+
       <div class="yolo-layout">
+        <!-- Upload zone -->
         <div class="yolo-upload">
-          <div style="margin-bottom: 12px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-            <label style="font-size: 0.85rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Legacy Timer in Photo (seconds)</label>
-            <input type="number" id="legacyTimerVal" value="87" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px; border-radius: 4px; width: 100px; font-family: var(--mono);" />
-            <span style="font-size: 0.75rem; color: #94a3b8; margin-left: 8px;">(for comparison)</span>
-          </div>
           <div class="drop-zone" id="dropZone"
                onclick="document.getElementById('fileInput').click()"
                ondragover="event.preventDefault()"
@@ -242,12 +290,139 @@
           <input type="file" id="fileInput" accept="image/*"
                  style="display:none" onchange="handleFileSelect(event)"/>
         </div>
+
+        <!-- Detection results -->
         <div class="yolo-results" id="yoloResults">
           <div class="yolo-ph">Upload an image to run detection</div>
         </div>
       </div>
+
+      <!-- Annotated preview -->
       <div class="yolo-preview" id="yoloPreview" style="display:none">
         <img id="yoloAnnotated" alt="YOLO annotated output"/>
+      </div>
+
+      <!-- ── MDP Tuple Display ── -->
+      <div class="mdp-tuple-panel" id="mdpTuplePanel" style="display:none">
+        <div class="mdp-title">MDP Transition Tuple (Sutton & Barto Ch.3)</div>
+        <div class="mdp-tuple-row" id="mdpTupleRow">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- ── RL Decision Panel (appears after detection) ── -->
+      <div class="rl-decision-panel" id="rlDecisionPanel" style="display:none">
+
+        <!-- Agent Action -->
+        <div class="rl-action-card">
+          <div class="rl-action-header">
+            <span class="rl-step-badge">Step 2</span>
+            <span>Agent Decision: π(s) = argmax<sub>a</sub> Q(s,a)</span>
+          </div>
+          <div class="rl-action-body">
+            <div class="rl-green-light" id="rlGreenLight">
+              <div class="traffic-light">
+                <div class="light red-light"></div>
+                <div class="light yellow-light"></div>
+                <div class="light green-light active" id="greenLightEl"></div>
+              </div>
+              <div class="rl-duration-display">
+                <div class="rl-duration-val" id="rlDuration">—s</div>
+                <div class="rl-duration-label">Green Phase</div>
+              </div>
+            </div>
+            <div class="rl-action-meta">
+              <div class="rl-meta-row"><span>Action index</span><b id="rlActionIdx">—</b></div>
+              <div class="rl-meta-row"><span>Q-value V(s)</span><b id="rlQValue">—</b></div>
+              <div class="rl-meta-row"><span>Before density</span><b id="rlDensityBefore">—</b></div>
+            </div>
+          </div>
+          <!-- Q-value mini bar chart -->
+          <div class="q-bars q-bars-sm" id="qBarsRL"></div>
+          <!-- Policy Explanation -->
+          <div class="rl-explanation" id="rlExplanation"></div>
+        </div>
+
+        <!-- Simulated Outcome -->
+        <div class="rl-outcome-card" id="rlOutcomeCard">
+          <div class="rl-action-header">
+            <span class="rl-step-badge step-3">Step 3</span>
+            <span>Simulated Outcome</span>
+          </div>
+          <div class="outcome-verdict" id="outcomeVerdict">
+            <!-- filled by JS -->
+          </div>
+          <div class="outcome-metrics" id="outcomeMetrics">
+            <!-- filled by JS -->
+          </div>
+          <div class="reward-breakdown" id="rewardBreakdown">
+            <!-- filled by JS -->
+          </div>
+        </div>
+
+        <!-- Online Feedback Panel (Q-Table Before/After) -->
+        <div class="rl-feedback-card">
+          <div class="rl-action-header">
+            <span class="rl-step-badge step-4">Step 4</span>
+            <span>Online Q-Table Update (Real Learning!)</span>
+          </div>
+          <p class="feedback-desc">
+            Upload the <b>after</b> image (same intersection, after the green phase)
+            to trigger a <b>real Q-learning update</b>. You'll see the Q-table change live!
+          </p>
+          <div class="feedback-row">
+            <div class="feedback-upload" id="feedbackUploadZone"
+                 onclick="document.getElementById('afterFileInput').click()">
+              <span>📷 Upload After-Image → Update Q-Table</span>
+            </div>
+            <input type="file" id="afterFileInput" accept="image/*" style="display:none"
+                   onchange="handleAfterImageUpload(event)"/>
+          </div>
+          <!-- Q-Table Diff Result -->
+          <div class="feedback-result" id="feedbackResult">
+            <span style="color:var(--text-muted);font-size:0.8rem">Upload after-image to see Q-table change in real-time</span>
+          </div>
+          <!-- Bellman Equation with Real Numbers -->
+          <div class="bellman-display" id="bellmanDisplay" style="display:none">
+            <!-- filled by JS -->
+          </div>
+          <!-- Q-Row Before/After Diff -->
+          <div class="q-diff-panel" id="qDiffPanel" style="display:none">
+            <!-- filled by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ROW 7: Decision History ===== -->
+    <section class="card history-card">
+      <div class="card-header">
+        <h2>📋 Decision History</h2>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="tag" id="historyCount">0 decisions</span>
+          <button class="icon-btn" onclick="loadHistory()" title="Refresh">↻</button>
+          <button class="icon-btn" onclick="clearHistory()" title="Clear" style="color:#fca5a5">🗑</button>
+        </div>
+      </div>
+      <div class="history-table-wrap">
+        <table class="history-table" id="historyTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Time</th>
+              <th>Image</th>
+              <th>Density</th>
+              <th>Action</th>
+              <th>Green Phase</th>
+              <th>Outcome</th>
+              <th>Reward</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody">
+            <tr><td colspan="9" class="placeholder">No decisions yet — upload a traffic image to begin</td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -256,9 +431,9 @@
   <!-- ──────────────── FOOTER ──────────────── -->
   <footer class="footer">
     <span>Smart Signal · IT567 Reinforcement Learning Project · 2026</span>
-    <span>Algorithm: Q-Learning (Sutton & Barto Ch.6) · Simulator: SUMO · Detection: YOLOv8n</span>
+    <span>Algorithm: Q-Learning (Sutton & Barto Ch.6, Eq. 6.8) · Perception: YOLOv8n · Update: Off-Policy TD Control</span>
   </footer>
 
-  <script src="/static/app.js?v=4"></script>
+  <script src="/static/app.js"></script>
 </body>
 </html>

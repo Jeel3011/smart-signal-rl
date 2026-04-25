@@ -124,6 +124,7 @@ class SARSAAgent:
             "alpha": self.alpha, "gamma": self.gamma,
             "epsilon": self.epsilon, "epsilon_decay": self.epsilon_decay,
             "epsilon_min": self.epsilon_min, "episode": self.episode,
+            "total_updates": self.total_updates,
         }
         p.with_suffix(".json").write_text(json.dumps(meta, indent=2))
 
@@ -134,6 +135,7 @@ class SARSAAgent:
         self.alpha = meta["alpha"]; self.gamma = meta["gamma"]
         self.epsilon = meta["epsilon"]
         self.episode = meta.get("episode", 0)
+        self.total_updates = meta.get("total_updates", 0)
 
     def get_config(self) -> dict:
         return {"agent": "SARSA", "alpha": self.alpha, "gamma": self.gamma,
